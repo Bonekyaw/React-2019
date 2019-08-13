@@ -29,7 +29,10 @@ export class TodoItem extends Component {
 
 //TypeChecking props Validator only in development mode
 TodoItem.propTypes = {
-	todos: PropTypes.object.isRequired
+	todo: PropTypes.object.isRequired,
+	markComplete: PropTypes.func.isRequired,
+	delTodo: PropTypes.func.isRequired
+
 }
 
 //Style object
