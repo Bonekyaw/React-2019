@@ -5,31 +5,19 @@ import Header from './components/layout/Header';
 import AddTodo from './components/AddTodo';
 import About from './components/pages/About';
 import { v4 } from 'uuid';
+import axios from 'axios';
 import './App.css';
 
 class App extends Component {
 
   state = {
-    todos: [
-          {
-            id: v4(),
-            title: 'Having breakfast',
-            completed: false
-          },
-          {
-            id: v4(),
-            title: 'Coding smart',
-            completed: false
-          },
-          {
-            id: v4(),
-            title: 'Meeting with Client',
-            completed: false
-          }
-    ]
+    todos: []
   };
 
-
+  componentDidMount() {
+    axios.get('https://jsonplaceholder.typicode.com/todos?_limit=10')
+    .then(res => this.setState({todos: res.data}))
+  }
   //Toggle Completed
   markComplete = (id) => {
     this.setState({ todos: this.state.todos.map( todo => {  //Setter
